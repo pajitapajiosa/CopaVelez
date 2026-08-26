@@ -12,19 +12,12 @@ workflows:
           npm ci || npm install
       - name: Build web assets
         script: |
-          npm run build || echo "No build script found, continuing..."
+          npm run build || echo "No build script found"
       - name: Sync Capacitor
         script: |
           npx --yes @capacitor/cli sync ios
       - name: Build IPA
         script: |
-          xcode-project build-ipa \
-            --project "ios/App/App.xcodeproj" \
-            --scheme "App" || \
-          xcode-project build-ipa \
-            --workspace "ios/App/App.xcworkspace" \
-            --scheme "App"
+          xcode-project build-ipa --project "ios/App/App.xcodeproj" --scheme "App"
     artifacts:
-      - ios/App/build/ios/ipa/*.ipa
-      - build/ios/ipa/*.ipa
-      - **/*.ipa
+      - "**/*.ipa"

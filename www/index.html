@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#f4c400">
+	<title>Copa Vélez 2026 | IPDVS</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+	<div id="splash" class="splash" aria-label="Cargando Copa Vélez">
+		<div class="splash-mark"><img src="logo-copa-velez.png" alt="Logo de la Copa Vélez" onerror="this.hidden=true; this.nextElementSibling.hidden=false"></div>
+		<p class="splash-name">COPA VÉLEZ</p>
+		<p class="splash-meta">2026 <i></i> IPDVS</p>
+		<p class="splash-credit">hecho por Marcos Díaz</p>
+	</div>
+
+	<div class="app-shell">
+		<header class="app-header">
+			<div class="brand-mark"><img src="logo-copa-velez.png" alt="Logo de la Copa Vélez" onerror="this.hidden=true; this.nextElementSibling.hidden=false"></div>
+			<div><p class="kicker">EDICIÓN OFICIAL</p><h1>COPA <b>VÉLEZ</b></h1><p class="edition">2026 <span></span> IPDVS</p></div>
+		</header>
+
+		<main id="home" class="home-view">
+			<button class="hero-action" data-screen="standings" type="button">
+				<div><p class="eyebrow">LA COPA SE JUEGA ACÁ</p><h2>Tabla de<br><strong>posiciones</strong></h2><p class="hero-note">Mirá cómo viene tu curso</p></div>
+				<div class="hero-arrow">↗</div>
+			</button>
+			<p class="section-heading">EXPLORAR LA COPA</p>
+			<div class="menu-grid">
+				<button class="menu-card" data-screen="calendar"><span class="card-icon">◷</span><strong>Calendario</strong><small>¿Qué actividades hay?</small></button>
+				<button class="menu-card" data-screen="results"><span class="card-icon">▤</span><strong>Resultados</strong><small>¿Cómo terminó cada actividad?</small></button>
+				<button class="menu-card" data-screen="course"><span class="card-icon">♙</span><strong>Mi curso</strong><small>Tu posición y puntos</small></button>
+				<button class="menu-card wide" data-screen="rules"><span class="card-icon">▥</span><strong>Reglamento oficial</strong><small>Actividades y puntos de la Copa</small></button>
+			</div>
+			<p class="footer-note">Instituto Privado Dalmacio Vélez Sársfield</p>
+			<button class="moderation-link" data-screen="admin">Moderación</button>
+		</main>
+	</div>
+
+	<div id="screens"></div>
+	<div id="toast" class="toast" role="status"></div>
+	<script src="app.js"></script>
+</body>
+</html>

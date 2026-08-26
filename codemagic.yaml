@@ -8,16 +8,10 @@ workflows:
       xcode: latest
     scripts:
       - name: Install dependencies
-        script: |
-          npm ci || npm install
-      - name: Build web assets
-        script: |
-          npm run build || echo "No build script found"
+        script: npm install
       - name: Sync Capacitor
-        script: |
-          npx --yes @capacitor/cli sync ios
+        script: npx --yes @capacitor/cli sync ios
       - name: Build IPA
-        script: |
-          xcode-project build-ipa --project "ios/App/App.xcodeproj" --scheme "App"
+        script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
     artifacts:
       - "**/*.ipa"

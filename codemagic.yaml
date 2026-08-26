@@ -8,10 +8,14 @@ workflows:
       xcode: latest
     scripts:
       - name: Install dependencies
-        script: npm install
+        script: |
+          npm install
+          chmod -R +x node_modules/.bin || true
       - name: Sync Capacitor
-        script: npx --yes @capacitor/cli sync ios
+        script: |
+          node ./node_modules/@capacitor/cli/bin/capacitor sync ios
       - name: Build IPA
-        script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
+        script: |
+          xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
     artifacts:
       - "**/*.ipa"

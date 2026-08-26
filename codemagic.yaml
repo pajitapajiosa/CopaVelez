@@ -16,7 +16,7 @@ workflows:
           npm run build || echo "No build script found, continuing..."
       - name: Sync Capacitor
         script: |
-          npx cap sync ios
+          npx --yes @capacitor/cli sync ios
       - name: Install CocoaPods
         script: |
           cd ios/App && pod install

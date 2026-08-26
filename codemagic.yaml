@@ -6,26 +6,25 @@ workflows:
     environment:
       node: 22
       xcode: latest
-      cocoapods: default
     scripts:
       - name: Install dependencies
         script: |
           npm ci || npm install
-          chmod +x node_modules/.bin/* || true
       - name: Build web assets
         script: |
           npm run build || echo "No build script found, continuing..."
       - name: Sync Capacitor
         script: |
-          node node_modules/@capacitor/cli/bin/capacitor sync ios
-      - name: Install CocoaPods
-        script: |
-          cd ios/App && pod install
+          npx --yes @capacitor/cli sync ios
       - name: Build IPA
         script: |
+          xcode-project build-ipa \
+            --project "ios/App/App.xcodeproj" \
+            --scheme "App" || \
           xcode-project build-ipa \
             --workspace "ios/App/App.xcworkspace" \
             --scheme "App"
     artifacts:
       - ios/App/build/ios/ipa/*.ipa
       - build/ios/ipa/*.ipa
+      - **/*.ipa

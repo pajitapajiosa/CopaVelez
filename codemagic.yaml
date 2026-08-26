@@ -6,16 +6,34 @@ workflows:
     environment:
       node: 22
       xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store          # o "ad_hoc" / "development" según lo que necesites
+        bundle_identifier: com.tu.bundle.id   # ← CÁMBIALO por tu Bundle ID real
     scripts:
       - name: Install dependencies
         script: |
           npm install
           chmod -R +x node_modules/.bin || true
+
       - name: Sync Capacitor
         script: |
-          node ./node_modules/@capacitor/cli/bin/capacitor sync ios
+          npx cap sync ios
+
+      - name: Install CocoaPods
+        script: |
+          cd ios/App && pod install
+
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+
       - name: Build IPA
         script: |
-          xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
+          xcode-project build-ipa \
+            --workspace ios/App/App.xcworkspace \
+            --scheme App \
+            --export-options-plist /Users/builder/export_options.plist
     artifacts:
+      - build/ios/ipa/*.ipa
       - "**/*.ipa"
